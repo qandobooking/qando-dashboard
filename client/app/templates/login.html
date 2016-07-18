@@ -5,17 +5,21 @@
   </md-toolbar>
   <md-content flex layout-padding>
 
-    <form>
+    <form ng-submit="LoginCtrl.login()">
       <md-input-container class="md-block">
         <label>Email</label>
-        <input type="text" ng-model="user.name">
+        <input type="email" ng-model="LoginCtrl.credentials.email">
       </md-input-container>
       <md-input-container class="md-block">
-        <label>Username</label>
-        <input type="text" ng-model="user.name">
+        <label>Password</label>
+        <input ng-model="LoginCtrl.credentials.password" type="text" ng-model="user.name">
       </md-input-container>
       <md-input-container>
-          <md-button class="md-raised md-primary">Login</md-button>
+          <md-button type="submit" class="md-raised md-primary">Login</md-button>
       </md-input-container>
     </form>
+
+    <div class="md-primary" ng-if="LoginCtrl.invalidCredentials">
+      Credenziali errate
+    </div>
   </md-content>
