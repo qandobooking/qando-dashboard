@@ -4,7 +4,7 @@ import satellizer from 'satellizer';
 
 angular.module('app.routing', [ uiRouter, satellizer ])
 
-.run(function($rootScope, $state, $ionicHistory, Preferences, $auth) {
+.run(function($rootScope, $state, Preferences, $auth) {
 
   // Go to login after logout
   $rootScope.$on("app:logoutSuccess", () => {
