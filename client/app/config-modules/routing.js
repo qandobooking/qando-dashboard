@@ -5,36 +5,34 @@ import satellizer from 'satellizer';
 angular.module('app.routing', [ uiRouter, satellizer ])
 
 .run(function($rootScope, $state, Preferences, $auth) {
-
   // Go to login after logout
   $rootScope.$on("app:logoutSuccess", () => {
-    $state.go("app.login");
+    $state.go("login");
   });
 
   // Go to home after login
   $rootScope.$on("app:loginSuccess", () => {
-      $state.go("app.logged.home")
+      $state.go("app.home")
   });
 
   // When the current shop loaded is invalid go back to choose shop page
   $rootScope.$on("Entities:invalidShop", () => {
-    $state.go("app.logged.choose-shop");
+    $state.go("choose-shop");
   });
 
   // When unauthorized back to login page
   $rootScope.$on("unauthorized", () => {
-    $state.go("app.login");
+    $state.go("login");
   });
 
   // State permissions...
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options) {
     if (toState.data) {
-
       // When state requires auth and user inst't authenticated
       // back to login page
       if (toState.data.auth && !$auth.isAuthenticated()) {
         event.preventDefault();
-        $state.go("app.login");
+        $state.go("login");
         return;
       }
 
@@ -42,7 +40,7 @@ angular.module('app.routing', [ uiRouter, satellizer ])
       // back to home
       if (toState.data.guest && $auth.isAuthenticated()){
         event.preventDefault();
-        $state.go("app.logged.home");
+        $state.go("app.home");
         return;
       }
 
@@ -50,7 +48,7 @@ angular.module('app.routing', [ uiRouter, satellizer ])
       // in preferences go to choose shop page
       if (toState.data.requiresShop && !Preferences.getCurrentShopId()) {
         event.preventDefault();
-        $state.go("app.logged.choose-shop");
+        $state.go("choose-shop");
         return;
       }
     }
@@ -70,13 +68,34 @@ angular.module('app.routing', [ uiRouter, satellizer ])
     }
   })
 
-  //.state('app', {
-    //url: '/',
-    //abstract: true,
-    //templateUrl: 'templates/menu.html',
-    //data : {
-      //auth : true
-    //}
-  //})
+  .state('choose-shop', {
+    url: '/choose-shop',
+    template: require('../templates/choose-shop.html'),
+    controller: 'ChooseShopCtrl as ChooseShopCtrl',
+    data: {
+      auth: true
+    }
+  })
+
+  .state('app', {
+    url: '/app',
+    abstract: true,
+    template: require('../templates/app.html'),
+    data: {
+      auth: true,
+      requiresShop: true
+    }
+  })
+
+  .state('app.home', {
+    url: '/home',
+    template: require('../templates/home.html')
+  })
+
+
+  $urlRouterProvider.otherwise(function ($injector) {
+    var $state = $injector.get('$state');
+    $state.go('app.home');
+  });
 
 });

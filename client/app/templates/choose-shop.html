@@ -1,0 +1,18 @@
+<md-toolbar class="md-priary">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">Qando</h2>
+    </div>
+  </md-toolbar>
+  <md-content flex layout-padding>
+
+  <md-list flex>
+    <md-list-item class="md-1-line" ng-repeat="shop in ChooseShopCtrl.shops"
+      ng-click="ChooseShopCtrl.setCurrentShop(shop)">
+      <img xng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{shop.name}}" />
+      <div class="md-list-item-text" layout="column">
+        {{ shop.name}}
+      </div>
+    </md-list-item>
+  </md-list>
+
+  </md-content>

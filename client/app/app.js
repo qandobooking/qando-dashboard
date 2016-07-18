@@ -29,4 +29,7 @@ angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
 
-  .run(() => {});
+  .run((Entities) => {
+
+    Entities.bootstrap();
+  });
