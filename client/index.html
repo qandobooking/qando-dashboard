@@ -10,12 +10,9 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <base href="/">
   </head>
-  <body ng-app="app" ng-cloak flex>
+  <body ng-app="app" flex layout="column" ng-cloak>
 
-    <div class="app" layout="column" flex ng-controller="AppCtrl as AppCtrl">
-      <div ui-view></div>
-    </div>
-
+    <div class="app" flex layout="column" ng-controller="AppCtrl as AppCtrl" ui-view></div>
     <!-- Google Analytics: change UA-71073175-2 to be your site's ID -->
     <!--
     <script>

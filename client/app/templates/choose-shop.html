@@ -1,18 +1,23 @@
 <md-toolbar class="md-priary">
-    <div class="md-toolbar-tools">
-      <h2 class="md-flex">Qando</h2>
-    </div>
-  </md-toolbar>
-  <md-content flex layout-padding>
+  <div class="md-toolbar-tools">
+    <h2 class="md-flex">Qando - Scegli il tuo shop</h2>
+  </div>
+</md-toolbar>
+<md-content flex>
 
-  <md-list flex>
-    <md-list-item class="md-1-line" ng-repeat="shop in ChooseShopCtrl.shops"
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="shop in ChooseShopCtrl.shops"
       ng-click="ChooseShopCtrl.setCurrentShop(shop)">
-      <img xng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{shop.name}}" />
-      <div class="md-list-item-text" layout="column">
-        {{ shop.name}}
+      <img ng-src="{{shop.booking_frontend_data.imageUrl}}" alt="{{shop.name}}" class="md-avatar">
+      <div class="md-list-item-text">
+        <h3>{{shop.name}}</h3>
+        <h4>{{shop.domain_name}}</h4>
+        <p>
+          {{shop.description}}
+        </p>
       </div>
+      <md-divider inset></md-divider>
     </md-list-item>
   </md-list>
 
-  </md-content>
+</md-content>
