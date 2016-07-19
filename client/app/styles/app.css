@@ -1,3 +1,19 @@
-.dashboard-navbar {
-  position: fixed;
+.faded{
+  opacity: 0;
+}
+
+.noneno {
+  display: none;
+}
+
+.fadein{
+    -webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.fadeout{
+    -webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
+    transition: opacity 1s;
+    opacity: 0;
 }

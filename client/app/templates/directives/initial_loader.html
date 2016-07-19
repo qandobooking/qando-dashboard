@@ -1,0 +1,34 @@
+<div class="initial-loader" style="background-color: #E8EAF6;" flex layout="column" layout-align="center">
+   <div flex layout="column" layout-align="center" ng-if="!loader.error">
+     <div layout="row" layout-align="center">
+       <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+     </div>
+  </div>
+
+  <div flex layout-padding>
+    <md-card ng-if="loader.error">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Ops, si è verificato un errore</span>
+          <div ng-switch="loader.error.status" class="md-subhead">
+            <p ng-switch-when="500">Servizio non disponibile</p>
+            <p ng-switch-when="404">Risorsa non trovata</p>
+            <p ng-switch-when="0">Connessione a internet assente</p>
+            <p ng-switch-when="undefined">
+              Errore sconosciuto
+              <i class="ion ion-outlet assertive"></i>
+            </p>
+            <p ng-switch-default>
+              Errore del server
+              <small class="assertive"> [{{ error.status}}]</small>
+            </p>
+          </div>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="start center">
+        <md-button ng-click="loader.load()">Riprova</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
+</div>
