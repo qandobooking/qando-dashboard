@@ -12,7 +12,7 @@ angular.module('app.routing', [ uiRouter, satellizer ])
 
   // Go to home after login
   $rootScope.$on("app:loginSuccess", () => {
-      $state.go("app.home")
+    $state.go("app.home")
   });
 
   // When the current shop loaded is invalid go back to choose shop page
