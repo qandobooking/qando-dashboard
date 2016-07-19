@@ -77,6 +77,15 @@ angular.module('app.routing', [ uiRouter, satellizer ])
     }
   })
 
+  .state('direct-login', {
+    url: '/direct-login?token&shopId',
+    template: require('../templates/direct-login.html'),
+    controller: 'DirectLoginCtrl as DirectLoginCtrl',
+    data: {
+      guest : true
+    }
+  })
+
   .state('app', {
     url: '/app',
     abstract: true,

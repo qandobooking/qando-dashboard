@@ -1,5 +1,4 @@
 function AppCtrl ($scope, DataService, $auth, $rootScope, Entities, Preferences, HttpUtils) {
-  console.info('AppController.');
 
   this.logged = () => $auth.isAuthenticated();
 
@@ -10,7 +9,6 @@ function AppCtrl ($scope, DataService, $auth, $rootScope, Entities, Preferences,
   })
 
   $rootScope.$on('Entities:userChanged', (evt, user) => {
-    console.info(user)
     this.user = user;
   })
 
@@ -42,10 +40,6 @@ function AppCtrl ($scope, DataService, $auth, $rootScope, Entities, Preferences,
     Preferences.clearPreferences();
     $rootScope.$broadcast("app:logoutSuccess");
   };
-
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-    console.info("state change start")
-  });
 }
 
 export default AppCtrl;
