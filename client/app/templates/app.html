@@ -1,18 +1,53 @@
-<md-toolbar class="md-priary">
-  <div class="md-toolbar-tools">
-    <h2 class="md-flex">Qando</h2>
-  </div>
-</md-toolbar>
-<div layout="row" flex>
-  <md-sidenav flex md-component-id="left" class="md-sidenav-left" md-is-locked-open="true">
-    <md-list>
-      <md-list-item>
-        {{AppCtrl.user.email}}
-      </md-list-item>
-      <md-list-item ng-click="AppCtrl.logout()">
-        Logout
-      </md-list-item>
-    <md-list/>
+<div layout="row" flex layout-fill>
+  <md-sidenav
+    class="md-sidenav-left md-whiteframe-z2"
+    role="sidenav"
+    md-component-id="left"
+    md-is-locked-open="$mdMedia('gt-md')">
+
+    <md-toolbar class="md-tall md-hue-2" layout-align="end end">
+      <div class="md-toolbar-tools" layout layout-padding>
+        <div layout="column">
+          <span class="md-body-3">Giovanni</span>
+          <span class="md-caption">giovanni@trizero.it</span>
+        </div>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <!-- TODO: Fucking Bug when collapse flex not work... -->
+    <md-content role="navigation" flex layout="column" ng-if="AppCtrl.shop">
+      <md-list flex>
+        <md-list-item ui-sref="app.login">
+          <md-icon>dashboard</md-icon>
+          <p>Home</p>
+        </md-list-item>
+        <md-list-item ui-sref="app.login" class="md-hue-3">
+          <md-icon>store</md-icon>
+          <p>{{ AppCtrl.shop.name }}</p>
+        </md-list-item>
+      </md-list>
+      <md-list layout-align="end">
+        <md-divider></md-divider>
+        <md-list-item ng-click="AppCtrl.logout()">
+          <md-icon>exit_to_app</md-icon>
+          <p>Logout</p>
+        </md-list-item>
+      </md-list>
+    </md-content>
   </md-sidenav>
-  <md-content flex ui-view layout="column"></md-content>
+
+  <section layout="column" role="main" flex>
+    <md-toolbar role="toolbar">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="DashboardAppCtrl.toggleSidenav()" hide-gt-md aria-label="Menu">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <h3 class="md-title">Qando</h3>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <section id="content" role="content" layout="column" layout-padding md-scroll-y>
+      <md-content ui-view></md-content>
+    </section>
+  </section>
 </div>

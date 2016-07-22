@@ -90,6 +90,7 @@ angular.module('app.routing', [ uiRouter, satellizer ])
     url: '/app',
     abstract: true,
     template: require('../templates/app.html'),
+    controller: 'DashboardAppCtrl as DashboardAppCtrl',
     data: {
       auth: true,
       requiresShop: true
